@@ -1,0 +1,3 @@
+- pupeteer for parsing
+- cors 
+- express server
