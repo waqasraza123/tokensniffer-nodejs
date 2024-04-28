@@ -58,7 +58,12 @@ async function searchOnWebpage(searchQuery) {
     }
 
     tokenInfo.riskInfo = riskInfo
-    console.log(tokenInfo)
+    
+
+    const sniffScoreObject = await page.$('.index_b__XO5He');
+    const sniffScore = await page.evaluate(element => element.textContent, sniffScoreObject);
+
+    tokenInfo.sniffScore = sniffScore;
 
     return tokenInfo;
 }
