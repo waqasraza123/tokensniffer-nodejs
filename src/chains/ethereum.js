@@ -1,12 +1,15 @@
-export default async function parsedDataTokenSnifferWebPage(searchQuery, chainId) {
+const puppeteer = require('puppeteer');
+
+const parsedDataTokenSnifferWebPage =  async (searchQuery) => {
     let tokenInfo = {};
+    const apiUrl = 'https://tokensniffer.com/token/eth';
 
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     try {
         // Navigate to the Ethereum API URL
-        await page.goto(CHAINIDS.ethereum.apiUrl + '/' + searchQuery);
+        await page.goto(apiUrl + '/' + searchQuery);
 
         // Wait for the table to load
         await page.waitForSelector('.Home_section__16Giz table');
@@ -45,3 +48,5 @@ export default async function parsedDataTokenSnifferWebPage(searchQuery, chainId
         throw error;
     }
 }
+
+module.exports = { parsedDataTokenSnifferWebPage };
