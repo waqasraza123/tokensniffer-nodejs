@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const { default: parsedDataTokenSnifferWebPage } = require('./chains/ethereum');
-const { default: parseSolSniferWebPage } = require('./chains/solana')
+const { default: parseSolSniferWebPage } = require('./chains/solana');
 
 const CHAINIDS = {
     solana: {
@@ -23,10 +23,10 @@ async function searchOnWebpage(searchQuery, chainId) {
 
 
     if (chainId === CHAINIDS.ethereum){
-        tokenInfo = parsedDataTokenSnifferWebPage()
+        tokenInfo = parsedDataTokenSnifferWebPage();
     }
-    else (chainId === CHAINIDS.solana){
-        tokenInfo = parseSolSniferWebPage()
+    else {
+        tokenInfo = parseSolSniferWebPage();
     }
 
     return tokenInfo;
