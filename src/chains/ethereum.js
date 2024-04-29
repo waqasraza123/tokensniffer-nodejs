@@ -11,36 +11,38 @@ const parsedDataTokenSnifferWebPage =  async (searchQuery) => {
         // Navigate to the Ethereum API URL
         await page.goto(apiUrl + '/' + searchQuery);
 
-        // Wait for the table to load
-        await page.waitForSelector('.Home_section__16Giz table');
+        await page.screenshot({ path: 'screenshot.png' });
 
-        // Extract data from the table
-        const tableData = await page.evaluate(() => {
-            const tableRows = document.querySelectorAll('.Home_section__16Giz table tbody tr');
-            const data = [];
+        // // Wait for the table to load
+        // await page.waitForSelector('.Home_section__16Giz table');
 
-            tableRows.forEach(row => {
-                const columns = row.querySelectorAll('td');
-                const rowData = {};
+        // // Extract data from the table
+        // const tableData = await page.evaluate(() => {
+        //     const tableRows = document.querySelectorAll('.Home_section__16Giz table tbody tr');
+        //     const data = [];
 
-                columns.forEach((column, index) => {
-                    // Extract data from each column
-                    rowData['column' + index] = column.textContent.trim();
-                });
+        //     tableRows.forEach(row => {
+        //         const columns = row.querySelectorAll('td');
+        //         const rowData = {};
 
-                data.push(rowData);
-            });
+        //         columns.forEach((column, index) => {
+        //             // Extract data from each column
+        //             rowData['column' + index] = column.textContent.trim();
+        //         });
 
-            return data;
-        });
+        //         data.push(rowData);
+        //     });
 
-        // Log the extracted table data
-        console.log('Table Data:', tableData);
+        //     return data;
+        // });
 
-        // Close the browser
-        await browser.close();
+        // // Log the extracted table data
+        // console.log('Table Data:', tableData);
 
-        return tokenInfo;
+        // // Close the browser
+        // await browser.close();
+
+        // return tokenInfo;
 
     } catch (error) {
         console.error('Error parsing token data:', error);
